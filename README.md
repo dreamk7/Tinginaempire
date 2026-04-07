@@ -1,2 +1,1 @@
-# Tinginaempire
-To the next generation 
+# TinginaEmpireFinal
