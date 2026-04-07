@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liked Songs - TinginaEmpire</title>
+    <link rel="stylesheet" href="./TinginaEmpire.css">
+    <link rel="stylesheet" href="./music.css"> <!-- Re-using styles from the music page -->
+    <link rel="icon" href="./logo.jpg" />
+    <link rel="stylesheet" href="./liked-songs.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container navbar">
+            <a href="./index.html" class="nav-logo"><img src="./logo.jpg" alt="TinginaEmpire Logo"><span class="nav-logo-text">TinginaEmpire</span></a>
+            <nav class="nav-links">
+                <a href="./index.html">Home</a>
+                <a href="./music.html">Music</a>
+                <a href="./band.html">Band</a>
+                <a href="./contact.html">Contact</a>
+            </nav>
+            <div class="hamburger-menu"><i class="fas fa-bars"></i></div>
+            <div id="auth-header-section"></div>
+        </div>
+    </header>
+
+    <main class="section-padding">
+        <div class="container trending-tracks-section"> <!-- Re-using class for layout -->
+            <div class="page-header">
+                <i class="fas fa-heart page-header-icon"></i>
+                <div>
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 0;">My Liked Songs</h2>
+                    <p id="liked-songs-count" style="color: var(--text-muted); text-align: left;"></p>
+                </div>
+            </div>
+            <div id="liked-songs-list">
+                <div class="loader-container full-page"><div class="loader"></div></div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">© 2025 TinginaEmpire - One Voice One Stand. All Rights Reserved.</footer>
+    
+    <div id="music-player"><!-- Player HTML --></div>
+
+<script src="./live-api.js"></script>
+<script src="./auth.js"></script>
+<script src="./player.js"></script>
+<script src="./component-renderer.js"></script>
+<script src="./liked-songs.js"></script> <!-- New dedicated script for this page -->
+
+</body>
+</html>

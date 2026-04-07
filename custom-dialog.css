@@ -1,0 +1,56 @@
+/* FILE: custom-dialog.css */
+/* Styles for the custom confirmation modal */
+
+#custom-confirm-modal {
+    /* Uses .modal-bg styles from TinginaEmpire.css */
+    z-index: 9998; /* Just below the toast container */
+}
+
+#custom-confirm-modal .modal-content {
+    max-width: 450px;
+    text-align: center;
+}
+
+.confirm-icon {
+    font-size: 3rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+}
+
+#custom-confirm-modal h3 {
+    font-size: 1.5rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+#custom-confirm-modal p {
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.confirm-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.confirm-buttons .btn {
+    flex: 1; /* Make buttons equal width */
+}
+
+.btn-confirm {
+    background-color: var(--gold);
+    color: #000;
+}
+.btn-confirm:hover {
+    background-color: #ffed8a;
+}
+.btn-cancel {
+    background-color: var(--dark-card);
+    border-color: var(--text-muted);
+    color: var(--text-light);
+}
+.btn-cancel:hover {
+    background-color: var(--text-muted);
+    color: #000;
+}

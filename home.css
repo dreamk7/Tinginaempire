@@ -1,0 +1,397 @@
+/* --- 1. Hero Section Enhancements --- */
+.home-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.home-hero-content h1 {
+    font-size: 4.5rem; /* Larger, more impactful text */
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text-light); /* Main color is white */
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.home-hero-content .highlight {
+    color: var(--gold);
+    display: block; /* Puts "Music Production Hub" on a new line */
+}
+
+.home-hero-content p {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 1.5rem auto 2.5rem auto;
+    line-height: 1.7;
+}
+
+.hero-cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--gold);
+    color: #000;
+}
+.btn-primary:hover {
+    background-color: #ffed8a;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-light);
+    border: 2px solid var(--text-light);
+}
+.btn-secondary:hover {
+    background-color: var(--text-light);
+    color: #000;
+}
+
+.stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    background-color: rgba(0,0,0,0.3);
+    backdrop-filter: blur(5px);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-item { text-align: center; }
+.stat-item .icon { font-size: 2rem; color: var(--gold); margin-bottom: 0.5rem; }
+.stat-item h3 { font-size: 2rem; font-weight: 700; color: var(--text-light); }
+.stat-item p { font-size: 1rem; color: var(--text-muted); }
+
+
+/* --- 2. About Section --- */
+.about-section-home { background-color: var(--dark-bg); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.about-story h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--gold); }
+.about-story p { color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; }
+.about-values { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+.value-card {
+    background-color: var(--dark-card);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* ADDED: Yellow hover effect for value cards */
+.value-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3), 0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+.value-card .icon { font-size: 2rem; color: var(--gold); margin-bottom: 1rem; }
+.value-card h4 { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--text-light); }
+.value-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+
+/* --- 3. NEW: Performance Info Section --- */
+.performance-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: stretch; /* Makes cards equal height */
+}
+
+.info-card {
+    background-color: var(--dark-card);
+    padding: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* ADDED: Yellow hover effect for info cards */
+.info-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3), 0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+.info-card h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.info-card h3 i {
+    color: var(--gold);
+}
+
+.info-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+.info-card ul li {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    line-height: 1.6;
+}
+.info-card ul li::before {
+    content: '●';
+    color: var(--gold);
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+}
+
+.performance-details-item {
+    margin-bottom: 1.5rem;
+}
+.performance-details-item h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+}
+.performance-details-item p {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+/* --- 4. NEW: Trending Tracks Section --- */
+.trending-tracks-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.trending-tracks-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.trending-tracks-header h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--gold); /* Changed to gold to match section titles */
+    margin-bottom: 0.5rem;
+}
+.trending-tracks-header p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+.track-list {
+    list-style: none;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: var(--dark-card);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.track-row {
+    display: grid;
+    grid-template-columns: 50px 70px 3fr 2fr 100px;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background-color 0.3s ease;
+}
+.track-row:last-child { border-bottom: none; }
+.track-row:hover { background-color: rgba(255, 255, 255, 0.05); }
+
+.track-rank { font-size: 1rem; color: var(--text-muted); font-weight: 600; text-align: center; }
+.track-artwork { position: relative; width: 50px; height: 50px; }
+.track-artwork img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+.track-play-btn { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background-color: rgba(0,0,0,0.5); color: white; font-size: 1.5rem; border-radius: 8px; cursor: pointer; opacity: 0; transition: opacity 0.3s ease; }
+.track-row:hover .track-play-btn { opacity: 1; }
+
+.track-info .title { font-weight: 600; color: var(--text-light); margin: 0; }
+.track-info .artist { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
+.track-album { font-size: 0.9rem; color: var(--text-muted); }
+.track-meta { text-align: right; font-size: 0.9rem; color: var(--text-muted); }
+.track-meta .plays { display: block; color: var(--text-light); font-weight: 500; margin-top: 0.25rem; }
+
+.view-all-btn { display: block; width: fit-content; margin: 2rem auto 0 auto; text-decoration: none; padding: 0.8rem 2.5rem; border: 1px solid var(--text-muted); color: var(--text-light); border-radius: 50px; transition: all 0.3s ease; }
+.view-all-btn:hover { background-color: var(--gold); border-color: var(--gold); color: #000; }
+
+
+/* --- 5. Final Call-to-Action (CTA) Section --- */
+.cta-section {
+    background: linear-gradient(45deg, var(--gold), #ffb300);
+    padding: 5rem 1rem;
+    text-align: center;
+    color: #000;
+    border-radius: 20px;
+    margin: 5rem auto;
+}
+
+.cta-section h2 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.cta-section p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 2.5rem auto;
+    line-height: 1.6;
+}
+
+.cta-buttons .btn-dark {
+    background-color: #111;
+    color: var(--text-light);
+}
+.cta-buttons .btn-dark:hover {
+    background-color: #333;
+    color: var(--gold);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.cta-buttons .btn-light {
+    background-color: transparent;
+    color: #111;
+    border: 2px solid #111;
+}
+.cta-buttons .btn-light:hover {
+    background-color: #111;
+    color: var(--text-light);
+}
+
+
+/* --- 6. Responsive Design for Homepage --- */
+@media (max-width: 992px) {
+    .home-hero-content h1 { font-size: 3.5rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .performance-info-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .home-hero-content h1 { font-size: 2.8rem; }
+    .home-hero-content p { font-size: 1.1rem; }
+    .hero-cta-buttons { flex-direction: column; align-items: center; gap: 1rem; }
+    .stats-bar { flex-direction: column; gap: 2rem; }
+    .about-values { grid-template-columns: 1fr; }
+    .cta-section h2 { font-size: 2.2rem; }
+}
+
+/* FILE: home.css */
+/* These styles apply ONLY to the redesigned index.html page */
+
+/* --- 1. Hero Section Enhancements (Updated) --- */
+.home-hero-content {
+    max-width: 800px; /* Slightly narrower for focus */
+    margin: 0 auto;
+    animation: fadeInFromBottom 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
+}
+@keyframes fadeInFromBottom { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+.home-hero-content h1 {
+    font-size: 4.2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text-light); /* Main color is white */
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+.home-hero-content .highlight {
+    color: var(--gold); /* Highlight color for "Music Production Hub" */
+    display: inline; /* Keep on the same line as per screenshot */
+}
+
+.home-hero-content p.subtitle {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 1.5rem auto 2.5rem auto;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+
+.hero-cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+/* --- 2. About Section --- */
+.about-section-home { background-color: var(--dark-bg); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.about-story h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--gold); text-align: left; }
+.about-story p { color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; }
+.about-values { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.value-card { background-color: var(--dark-card); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
+.value-card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 15px 30px rgba(0,0,0,0.3), 0 0 15px rgba(255, 215, 0, 0.2); }
+.value-card .icon { font-size: 2rem; color: var(--gold); margin-bottom: 1rem; }
+.value-card h4 { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--text-light); }
+.value-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+
+/* --- 3. Recently Added Section (Was Trending Tracks) --- */
+.recent-tracks-container { width: 100%; max-width: 900px; margin: 0 auto; }
+.recent-tracks-header { text-align: center; margin-bottom: 3rem; }
+.recent-tracks-header h2 { font-size: 2.8rem; font-weight: 700; color: var(--gold); margin-bottom: 0.5rem; }
+.recent-tracks-header p { font-size: 1.1rem; color: var(--text-muted); }
+.track-list { list-style: none; padding: 0; border: 1px solid rgba(255, 255, 255, 0.1); background-color: var(--dark-card); border-radius: 12px; overflow: hidden; }
+.track-row { display: grid; grid-template-columns: 50px 70px 3fr 2fr 100px; gap: 1rem; align-items: center; padding: 0.75rem 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); transition: background-color 0.3s ease; }
+.track-row:last-child { border-bottom: none; }
+.track-row:hover { background-color: rgba(255, 255, 255, 0.05); }
+.track-rank { font-size: 1rem; color: var(--text-muted); font-weight: 600; text-align: center; }
+.track-artwork { position: relative; width: 50px; height: 50px; }
+.track-artwork img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+.track-play-btn { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background-color: rgba(0,0,0,0.5); color: white; font-size: 1.5rem; border-radius: 8px; cursor: pointer; opacity: 0; transition: opacity 0.3s ease; }
+.track-row:hover .track-play-btn { opacity: 1; }
+.track-info .title { font-weight: 600; color: var(--text-light); margin: 0; }
+.track-info .artist { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
+.track-album { font-size: 0.9rem; color: var(--text-muted); }
+.track-meta { text-align: right; font-size: 0.9rem; color: var(--text-muted); }
+.track-meta .plays { display: block; color: var(--text-light); font-weight: 500; margin-top: 0.25rem; }
+.view-all-btn { display: block; width: fit-content; margin: 2rem auto 0 auto; text-decoration: none; padding: 0.8rem 2.5rem; border: 1px solid var(--text-muted); color: var(--text-light); border-radius: 50px; transition: all 0.3s ease; }
+.view-all-btn:hover { background-color: var(--gold); border-color: var(--gold); color: #000; }
+
+/* --- 4. Final CTA Section --- */
+.cta-section { background: linear-gradient(45deg, var(--gold), #ffb300); padding: 5rem 1rem; text-align: center; color: #000; border-radius: 20px; margin: 5rem auto; }
+.cta-section h2 { font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; }
+.cta-section p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 2.5rem auto; line-height: 1.6; }
+.cta-buttons .btn-dark { background-color: #111; color: var(--text-light); }
+.cta-buttons .btn-dark:hover { background-color: #333; color: var(--gold); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+.cta-buttons .btn-light { background-color: transparent; color: #111; border: 2px solid #111; }
+.cta-buttons .btn-light:hover { background-color: #111; color: var(--text-light); }
+
+/* --- 5. Responsive Design for Homepage --- */
+@media (max-width: 992px) { .home-hero-content h1 { font-size: 3.5rem; } .about-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) {
+    .home-hero-content h1 { font-size: 2.8rem; }
+    .home-hero-content p.subtitle { font-size: 1.1rem; }
+    .hero-cta-buttons { flex-direction: column; align-items: center; gap: 1rem; }
+    .about-values { grid-template-columns: 1fr; }
+    .cta-section h2 { font-size: 2.2rem; }
+    .track-row { grid-template-columns: 30px 60px 1fr 80px; padding: 0.75rem 1rem; }
+    .track-album { display: none; }
+}

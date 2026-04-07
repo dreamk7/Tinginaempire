@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - TinginaEmpire</title>
+    <link rel="stylesheet" href="./TinginaEmpire.css">
+    <link rel="stylesheet" href="./profile.css"> <!-- New dedicated stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="icon" href="./logo.jpg" />
+</head>
+<body>
+    <header class="main-header"><!-- ... standard header HTML ... --></header>
+
+    <main class="section-padding">
+        <div class="container profile-container">
+            <h2 class="section-title">My Profile</h2>
+            <form id="profile-form">
+                <div class="form-group">
+                    <label for="profile-username">Username</label>
+                    <input type="text" id="profile-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="profile-email">Email (Cannot be changed)</label>
+                    <input type="email" id="profile-email" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="profile-new-password">New Password (Optional)</label>
+                    <input type="password" id="profile-new-password" placeholder="Leave blank to keep current password">
+                </div>
+                <button type="submit" class="form-submit-btn">Save Changes</button>
+                <p id="profile-feedback" class="feedback-message" style="display: none;"></p>
+            </form>
+        </div>
+    </main>
+
+    <footer class="main-footer"><!-- ... standard footer HTML ... --></footer>
+
+<script src="./mock-api.js"></script>
+<script src="./auth.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    setupAuthentication();
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+
+    // Protect the page: if no user, redirect to login
+    if (!currentUser) {
+        window.location.href = './login.html';
+        return;
+    }
+
+    const form = document.getElementById('profile-form');
+    const usernameInput = document.getElementById('profile-username');
+    const emailInput = document.getElementById('profile-email');
+    const passwordInput = document.getElementById('profile-new-password');
+    const feedbackEl = document.getElementById('profile-feedback');
+
+    // Populate form with current user data
+    usernameInput.value = currentUser.username;
+    emailInput.value = currentUser.email;
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        feedbackEl.style.display = 'none';
+        
+        try {
+            const updatedUser = await MockAPI.updateUserProfile(currentUser.id, {
+                username: usernameInput.value,
+                newPassword: passwordInput.value || null
+            });
+
+            // Update session storage with new details
+            sessionStorage.setItem('currentUser', JSON.stringify(updatedUser));
+
+            feedbackEl.textContent = 'Profile updated successfully!';
+            feedbackEl.style.color = 'var(--green)';
+            feedbackEl.style.display = 'block';
+            
+            // Reload header to show new username initial
+            setTimeout(() => window.location.reload(), 1500);
+
+        } catch (error) {
+            feedbackEl.textContent = error.message;
+            feedbackEl.style.color = 'var(--red)';
+            feedbackEl.style.display = 'block';
+        }
+    });
+});
+</script>
+</body>
+</html>

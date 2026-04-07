@@ -1,0 +1,130 @@
+/* FILE: contact.css */
+/* All unique styles for the contact.html page */
+
+/* --- 1. Get In Touch Section --- */
+.get-in-touch-section {
+    padding: 5rem 0;
+    background-color: var(--dark-card);
+}
+
+.get-in-touch-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 4rem auto;
+}
+
+.get-in-touch-header h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.get-in-touch-header p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.contact-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Left column smaller, right column larger */
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+
+/* --- 2. Contact Info Cards (Left Column) --- */
+.contact-info-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-detail-card {
+    background-color: var(--dark-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.contact-detail-card .icon {
+    font-size: 1.5rem;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 5px;
+}
+
+.contact-detail-card h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+}
+
+.contact-detail-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+
+/* --- 3. Contact Form (Right Column) --- */
+.contact-form-wrapper {
+    background-color: var(--dark-bg);
+    padding: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-form-wrapper h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+/* Make Message field span both columns */
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+/* Style for the submit button */
+.contact-form-wrapper .form-submit-btn {
+    background-color: var(--gold);
+    color: #000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+.contact-form-wrapper .form-submit-btn:hover {
+    background-color: #ffed8a;
+}
+
+
+/* --- 4. Responsive Design --- */
+@media (max-width: 992px) {
+    .contact-layout-grid {
+        grid-template-columns: 1fr; /* Stack columns on tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr; /* Stack form fields on mobile */
+    }
+    .get-in-touch-header h2 {
+        font-size: 2.2rem;
+    }
+}

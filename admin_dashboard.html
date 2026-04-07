@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - TinginaEmpire</title>
+    <link rel="stylesheet" href="./TinginaEmpire.css">
+    <link rel="stylesheet" href="./admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" href="https://img.icons8.com/color/48/000000/musical-notes.png" />
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="admin-login-screen" class="admin-login-container" style="display: none;">
+        <div class="login-box">
+            <div class="admin-logo"><img src="./logo.jpg" alt="Logo"><span>TinginaEmpire Admin</span></div>
+            <h3>Admin Login</h3>
+            <form id="admin-login-form">
+                <div class="form-group"><label for="admin-user">Admin Email</label><input type="email" id="admin-user" value="admin@tingina.com" required></div>
+                <div class="form-group"><label for="admin-pass">Password</label><input type="password" id="admin-pass" value="password" required></div>
+                <button type="submit" class="form-submit-btn">Login</button>
+                <p id="login-error" class="feedback-message" style="display: none;"></p>
+                <p class="login-hint">Note: Main login is at login.html</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Admin Layout -->
+    <div id="admin-main-layout" class="admin-layout" style="display: none;">
+        <aside class="admin-sidebar">
+            <div class="admin-logo"><img src="./logo.jpg" alt="Logo"><span>TinginaEmpire</span></div>
+            <nav class="admin-nav">
+                <a href="#dashboard" class="admin-nav-link active" data-section="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="#artists" class="admin-nav-link" data-section="artists"><i class="fas fa-user-tie"></i> Manage Artists</a>
+                <a href="#songs" class="admin-nav-link" data-section="songs"><i class="fas fa-music"></i> Manage Songs</a>
+                <a href="#band-members" class="admin-nav-link" data-section="band-members"><i class="fas fa-users-cog"></i> Manage Band</a>
+                <a href="#videos" class="admin-nav-link" data-section="videos"><i class="fas fa-video"></i> Manage Videos</a>
+                <a href="#submissions" class="admin-nav-link" data-section="submissions"><i class="fas fa-envelope-open-text"></i> Submissions <span id="submissions-badge" class="notification-badge" style="display: none;"></span></a>
+                <a href="#users" class="admin-nav-link" data-section="users"><i class="fas fa-users"></i> Manage Users</a>
+                <a href="#" id="admin-logout-btn" class="admin-nav-link logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </nav>
+        </aside>
+
+        <main class="admin-main-content">
+            <!-- Dashboard Section -->
+            <div class="admin-section" id="dashboard-section">
+                <header class="admin-header"><h1>Dashboard Overview</h1></header>
+                <div class="stats-grid"></div>
+                <div class="chart-grid">
+                    <div class="chart-container">
+                        <h3>Registrations (Last 30 Days)</h3>
+                        <canvas id="registrationsChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Plays by Top Artist</h3>
+                        <canvas id="playsByArtistChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- Artists Section -->
+            <div class="admin-section" id="artists-section" style="display: none;">
+                <header class="admin-header">
+                    <h2>Manage Artists</h2>
+                    <div class="header-actions">
+                        <input type="text" id="artist-search" class="search-input" placeholder="Search artists...">
+                        <button class="admin-btn-primary" id="add-artist-btn"><i class="fas fa-plus"></i> Add Artist</button>
+                    </div>
+                </header>
+                <div class="admin-table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Bio</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Songs Section -->
+            <div class="admin-section" id="songs-section" style="display: none;">
+                <header class="admin-header">
+                    <h2>Manage Songs</h2>
+                    <div class="header-actions">
+                        <input type="text" id="song-search" class="search-input" placeholder="Search songs...">
+                        <button class="admin-btn-primary" id="add-song-btn"><i class="fas fa-plus"></i> Add Song</button>
+                    </div>
+                </header>
+                <div class="admin-table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Artwork</th>
+                                <th>Title</th>
+                                <th>Artist</th>
+                                <th>Genre</th>
+                                <th>Duration</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Band Members Section -->
+            <div class="admin-section" id="band-members-section" style="display: none;">
+                <header class="admin-header">
+                    <h2>Manage Band Members</h2>
+                    <button class="admin-btn-primary" id="add-band-member-btn"><i class="fas fa-plus"></i> Add Member</button>
+                </header>
+                <div class="admin-table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Videos Section -->
+            <div class="admin-section" id="videos-section" style="display: none;">
+                <header class="admin-header">
+                    <h2>Manage Videos</h2>
+                    <button class="admin-btn-primary" id="add-video-btn"><i class="fas fa-plus"></i> Add Video</button>
+                </header>
+                <div class="admin-table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>URL</th>
+                                <th>Duration</th>
+                                <th>Views</th>
+                                <th>Featured</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Submissions Section -->
+            <div class="admin-section" id="submissions-section" style="display: none;">
+                <header class="admin-header">
+                    <h2>Form Submissions</h2>
+                </header>
+                <div class="admin-table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Form Type</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Details</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Users Section -->
+            <div class="admin-section" id="users-section" style="display: none;">
+                <header class="admin-header">
+                    <h2>Manage Users</h2>
+                    <div class="header-actions">
+                        <input type="text" id="user-search" class="search-input" placeholder="Search by username or email...">
+                    </div>
+                </header>
+                <p>User data is mocked. Passwords would be securely hashed in a real database.</p>
+                <div class="admin-table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Downloads</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODALS -->
+    <div id="image-cropper-modal" class="modal-bg">
+        <div class="modal-content crop-container">
+            <button class="modal-close-btn">&times;</button>
+            <h3>Crop Image</h3>
+            <div class="crop-image-wrapper"><img id="image-to-crop"></div>
+            <button id="confirm-crop-btn" class="form-submit-btn">Crop & Use Image</button>
+        </div>
+    </div>
+    <div id="artist-modal" class="modal-bg">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3 id="artist-modal-title"></h3>
+            <form id="artist-form">
+                <input type="hidden" id="artist-id">
+                <div class="form-group"><label for="artist-name">Artist Name *</label><input type="text" id="artist-name" name="name" required></div>
+                <div class="form-group"><label for="artist-bio">Biography</label><textarea id="artist-bio" name="bio" rows="4"></textarea></div>
+                <h4>Social Media Links (Optional)</h4>
+                <div class="form-group"><label for="artist-twitter">Twitter URL</label><input type="url" id="artist-twitter" name="twitter_url" placeholder="https://twitter.com/artist"></div>
+                <div class="form-group"><label for="artist-instagram">Instagram URL</label><input type="url" id="artist-instagram" name="instagram_url" placeholder="https://instagram.com/artist"></div>
+                <div class="form-group"><label for="artist-facebook">Facebook URL</label><input type="url" id="artist-facebook" name="facebook_url" placeholder="https://facebook.com/artist"></div>
+                <div class="form-group"><label for="artist-image-file">Artist Image *</label><input type="file" id="artist-image-file" name="image" accept="image/*"></div>
+                <button type="submit" class="form-submit-btn">Save Artist</button>
+            </form>
+        </div>
+    </div>
+    <div id="song-modal" class="modal-bg">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3 id="song-modal-title"></h3>
+            <form id="song-form">
+                <input type="hidden" id="song-id">
+                <div class="form-group" id="artwork-upload-group"><label for="song-artwork-file">Upload Artwork *</label><input type="file" id="song-artwork-file" name="artwork" accept="image/*"></div>
+                <div class="form-group"><label for="song-title">Title *</label><input type="text" id="song-title" name="title" required></div>
+                <div class="form-group"><label for="song-artist">Artist *</label><select id="song-artist" name="artistId" required></select></div>
+                <div class="form-group"><label for="song-genre">Genre</label><input type="text" id="song-genre" name="genre"></div>
+                <div class="form-group"><label for="song-video-url">YouTube Video URL</label><input type="url" id="song-video-url" name="videoUrl"></div>
+                <div class="form-group" id="audio-upload-group"><label for="song-audio-file">Audio File (MP3) *</label><input type="file" id="song-audio-file" name="audio" accept="audio/mpeg"></div>
+                <button type="submit" class="form-submit-btn">Save Song</button>
+            </form>
+        </div>
+    </div>
+    <!-- UPDATED: User Edit Modal -->
+    <div id="user-modal" class="modal-bg">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3 id="user-modal-title">Edit User</h3>
+            <form id="user-form">
+                <input type="hidden" id="user-id">
+                <div class="form-group">
+                    <label for="user-username">Username</label>
+                    <input type="text" id="user-username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-email">Email</label>
+                    <input type="email" id="user-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-password">New Password</label>
+                    <input type="password" id="user-password" name="newPassword" placeholder="Leave blank to keep unchanged">
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="user-is-admin" name="isAdmin">
+                    <label for="user-is-admin">Make this user an Administrator</label>
+                </div>
+                <div class="form-group" id="demotion-password-group" style="display: none;">
+                    <label for="user-demotion-password" style="color: var(--red);">Enter Target User's Password to Confirm Demotion</label>
+                    <input type="password" id="user-demotion-password" placeholder="User's current password">
+                </div>
+                <button type="submit" class="form-submit-btn">Save Changes</button>
+            </form>
+        </div>
+    </div>
+    <div id="band-member-modal" class="modal-bg">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3 id="band-member-modal-title"></h3>
+            <form id="band-member-form">
+                <input type="hidden" id="band-member-id" name="id">
+                <div class="form-group">
+                    <label for="band-member-name">Member Name *</label>
+                    <input type="text" id="band-member-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="band-member-role">Role *</label>
+                    <input type="text" id="band-member-role" name="role" required>
+                </div>
+                <div class="form-group">
+                    <label for="band-member-bio">Biography</label>
+                    <textarea id="band-member-bio" name="bio" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="band-member-image">Image *</label>
+                    <input type="file" id="band-member-image" name="image" accept="image/*" required>
+                </div>
+                <button type="submit" class="form-submit-btn">Save Member</button>
+            </form>
+        </div>
+    </div>
+    <div id="video-modal" class="modal-bg">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3>Add Video</h3>
+            <form id="video-form">
+                <div class="form-group">
+                    <label for="video-title">Video Title *</label>
+                    <input type="text" id="video-title" name="title" required>
+                </div>
+                <p style="text-align:center; color: var(--text-muted); margin-bottom: 1rem;">
+                    Provide at least one of the following:
+                </p>
+                <div class="form-group">
+                    <label for="video-file">Upload Video File</label>
+                    <input type="file" id="video-file" name="videoFile" accept="video/mp4,video/webm">
+                </div>
+                <div class="form-group">
+                    <label for="video-url">Or Paste YouTube URL</label>
+                    <input type="url" id="video-url" name="youtubeUrl" placeholder="https://www.youtube.com/watch?v=...">
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="video-featured" name="featured">
+                    <label for="video-featured">Feature on Band page</label>
+                </div>
+                <button type="submit" class="form-submit-btn">Save Video</button>
+            </form>
+        </div>
+    </div>
+    <div id="crop-modal" class="modal-bg"><div class="modal-content crop-container"><button class="modal-close-btn">&times;</button><h3>Crop Artwork</h3><div class="crop-image-wrapper"><img id="crop-image-src"></div><button id="crop-confirm-btn" class="form-submit-btn">Crop & Continue</button></div></div>
+    <div id="custom-alert-modal" class="modal-bg"><div class="modal-content text-center"><h3 id="custom-alert-title"></h3><p id="custom-alert-message"></p><div class="custom-alert-buttons"><button id="custom-alert-ok" class="btn btn-primary"></button><button id="custom-alert-cancel" class="btn btn-secondary"></button></div></div></div>
+    <div id="user-details-modal" class="modal-bg">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <div id="user-details-content">
+                <!-- User details will be rendered here by JavaScript -->
+                <div class="loader-container"><div class="loader"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./live-api.js"></script>
+    <script src="./notifications.js"></script>
+    <script src="./admin.js"></script>
+    <script src="./cropper-service.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music - TinginaEmpire</title>
+    <link rel="stylesheet" href="./TinginaEmpire.css">
+    <link rel="stylesheet" href="./music.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="icon" href="https://img.icons8.com/color/48/000000/musical-notes.png" />
+    <link rel="stylesheet" href="./notifications.css">
+    <link rel="stylesheet" href="./custom-dialog.css"> <!-- ADD THIS LINE -->
+</head>
+<body>
+    <header class="main-header">
+        <div class="container navbar">
+            <a href="./index.html" class="nav-logo"><img src="./logo.jpg" alt="TinginaEmpire Logo"><span class="nav-logo-text">TinginaEmpire</span></a>
+            <nav class="nav-links">
+                <a href="./index.html">Home</a>
+                <a href="./music.html" class="active">Music</a>
+                <a href="./band.html">Band</a>
+                <a href="./contact.html">Contact</a>
+            </nav>
+            <div class="hamburger-menu"><i class="fas fa-bars"></i></div>
+            <div id="auth-header-section"></div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-slideshow-section">
+            <div class="slideshow-container">
+                <div class="slide" style="background-image: url('./Photos/mic.jpg');"></div>
+                <div class="slide" style="background-image: url('./Photos/musicnotes.jpg');"></div>
+                <div class="slide active" style="background-image: url('./Photos/crowd.jpg');"></div>
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content"><h1>The Heartbeat of Uganda</h1><p>Explore our vast collection of music. <span class="highlight">Feel the rhythm.</span></p></div>
+        </section>
+
+        <!-- Trending Tracks Section -->
+        <section class="section-padding">
+            <div class="container trending-tracks-section">
+                <h2 class="section-title">Trending Tracks</h2>
+                <div id="trending-tracks-list"><div class="loader-container full-page"><div class="loader"></div></div></div>
+            </div>
+        </section>
+
+        <!-- Featured Artists Section -->
+        <section class="section-padding" style="background-color: var(--dark-card);">
+            <div class="container">
+                <h2 class="section-title">Featured Artists</h2>
+                <div class="filter-bar" id="artist-filter-bar">
+                    <!-- Artist filter HTML will be injected by JavaScript -->
+                </div>
+                <div id="featured-artists-grid" class="grid-layout">
+                     <div class="loader-container full-page"><div class="loader"></div></div>
+                </div>
+                <div id="no-artists-message" style="display: none;"><p style="text-align: center; color: var(--text-muted);">No artists found matching your criteria.</p></div>
+                <div class="pagination-controls" id="artist-pagination"></div>
+            </div>
+        </section>
+        
+        <!-- All Songs Section -->
+        <section id="all-songs-section" class="section-padding">
+            <div class="container songs-list-container">
+                <h2 class="section-title">All Songs</h2>
+                <div class="filter-bar" id="song-filter-bar">
+                    <!-- Song filter HTML will be injected by JavaScript -->
+                </div>
+                <div id="all-songs-list">
+                    <div class="loader-container full-page"><div class="loader"></div></div>
+                </div>
+                <div id="no-songs-message" style="display: none;"><p style="text-align: center; color: var(--text-muted);">No songs found matching your criteria.</p></div>
+                <div class="pagination-controls" id="song-pagination"></div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="main-footer">© 2025 TinginaEmpire - One Voice One Stand. All Rights Reserved.</footer>
+
+    <!-- music player -->
+    <div id="music-player">
+        <div id="player-song-info">
+            <img id="player-artwork" src="https://via.placeholder.com/60?text=TE" alt="Song Artwork">
+            <div class="details"><p id="player-title" class="title">Select a song</p><p id="player-artist" class="artist">to start playing</p></div>
+        </div>
+        <div id="player-controls">
+            <div class="player-buttons">
+                <button id="prev-btn" title="Previous"><i class="fas fa-step-backward"></i></button>
+                <button id="play-pause-btn" title="Play/Pause"><i class="fas fa-play"></i></button>
+                <button id="next-btn" title="Next"><i class="fas fa-step-forward"></i></button>
+            </div>
+            <div id="player-progress-container">
+                <span id="current-time">0:00</span>
+                <div id="progress-bar-wrapper"><div id="progress-bar"></div></div>
+                <span id="duration">0:00</span>
+            </div>
+        </div>
+        <div id="player-extra-controls">
+            <button id="player-like-btn" class="like-btn" title="Like Song"><i class="far fa-heart"></i></button>
+            <div id="player-volume-container">
+                <i id="volume-icon" class="fas fa-volume-up"></i>
+                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+            </div>
+            <a href="#" id="player-download-btn" target="_blank" download title="Download Song"><i class="fas fa-download"></i></a>
+        </div>
+        <audio id="audio-source"></audio>
+    </div>
+
+    <!-- Authentication Modal -->
+    <div id="auth-modal" class="modal-bg">
+        <div class="modal-content">
+            <button class="modal-close-btn">×</button>
+            <div class="auth-modal-tabs"><button class="auth-modal-tab active" data-form="login">Login</button><button class="auth-modal-tab" data-form="signup">Sign Up</button></div>
+            <div id="login-form-container" class="form-container active"><h3>Welcome Back</h3><form id="login-form"><div class="form-group"><label for="login-email">Email</label><input type="email" id="login-email" required></div><div class="form-group"><label for="login-password">Password</label><input type="password" id="login-password" required></div><button type="submit" class="form-submit-btn">Login</button><div class="feedback-message" style="display: none;"></div></form></div>
+            <div id="signup-form-container" class="form-container"><h3>Create Account</h3><form id="signup-form"><div class="form-group"><label for="signup-username">Username</label><input type="text" id="signup-username" required></div><div class="form-group"><label for="signup-email">Email</label><input type="email" id="signup-email" required></div><div class="form-group"><label for="signup-password">Password</label><input type="password" id="signup-password" minlength="6" required></div><button type="submit" class="form-submit-btn">Sign Up</button><div class="feedback-message" style="display: none;"></div></form></div>
+            <p class="social-login-text">or continue with</p><button class="google-login-btn"><i class="fab fa-google"></i> Login with Google</button>
+        </div>
+    </div>
+    <div id="custom-confirm-modal" class="modal-bg">
+        <div class="modal-content">
+            <div class="confirm-icon"><i class="fas fa-question-circle"></i></div>
+            <h3 id="custom-confirm-title">Confirmation</h3>
+            <p id="custom-confirm-message">Are you sure you want to proceed?</p>
+            <div class="confirm-buttons">
+                <button class="btn btn-cancel">Cancel</button>
+                <button class="btn btn-confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+<script src="./live-api.js"></script>
+<script src="./auth.js"></script>
+<script src="./music-logic.js"></script>
+<script src="./notifications.js"></script>
+<script src="./custom-dialog.js"></script> <!-- ADD THIS LINE -->
+<script src="./player.js"></script>
+<script src="./component-renderer.js"></script>
+<script src="./notifications.js"></script>
+</body>
+</html>

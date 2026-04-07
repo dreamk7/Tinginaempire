@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - TinginaEmpire</title>
+    <link rel="stylesheet" href="./TinginaEmpire.css">
+    <link rel="stylesheet" href="./contact.css">
+    <link rel="stylesheet" href="./notifications.css">
+    <link rel="stylesheet" href="./custom-dialog.css"> <!-- ADD THIS LINE -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="icon" href="https://img.icons8.com/color/48/000000/musical-notes.png" />
+</head>
+<body>
+    <header class="main-header">
+        <div class="container navbar">
+            <a href="./index.html" class="nav-logo"><img src="./logo.jpg" alt="TinginaEmpire Logo"><span class="nav-logo-text">TinginaEmpire</span></a>
+            <nav class="nav-links">
+                <a href="./index.html">Home</a>
+                <a href="./music.html">Music</a>
+                <a href="./band.html">Band</a>
+                <a href="./contact.html" class="active">Contact</a>
+            </nav>
+            <div class="hamburger-menu"><i class="fas fa-bars"></i></div>
+            <div id="auth-header-section"></div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-slideshow-section">
+            <div class="slideshow-container">
+                <div class="slide" style="background-image: url('./Photos/mic.jpg');"></div>
+                <div class="slide active" style="background-image: url('./Photos/contact-hero.jpg');"></div>
+                <div class="slide" style="background-image: url('./Photos/crowd.jpg');"></div>
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>Let's Create Together</h1>
+                <p>Have a project in mind or want to book our band? <span class="highlight">We're here to help.</span></p>
+            </div>
+            <!-- ADDED: Slideshow Arrow Buttons -->
+            <button class="slideshow-arrow arrow-left"><i class="fas fa-chevron-left"></i></button>
+            <button class="slideshow-arrow arrow-right"><i class="fas fa-chevron-right"></i></button>
+        </section>
+
+        <!-- About Us Section -->
+        <section class="section-padding">
+            <div class="container">
+                <h2 class="section-title">About TinginaEmpire</h2>
+                <div class="about-us-content">
+                    <p>Born from the vibrant heart of Kampala, TinginaEmpire was founded on a simple yet powerful principle: <span class="highlight">One Voice, One Stand</span>. We are more than just a production house; we are a collective of storytellers, artists, and visionaries dedicated to elevating Ugandan talent to the global stage.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Get In Touch Section -->
+        <section class="get-in-touch-section">
+            <div class="container">
+                <div class="get-in-touch-header">
+                    <h2>Get In Touch</h2>
+                    <p>Ready to start your musical journey with us? Whether you need production services or want to book our live band, we’re here to make it happen.</p>
+                </div>
+                <div class="contact-layout-grid">
+                    <!-- Left Column: Info Cards -->
+                    <div class="contact-info-stack">
+                        <div class="contact-detail-card"><div class="icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>Studio Location</h4><p>123 Music Lane, Kampala, Uganda.</p></div></div>
+                        <div class="contact-detail-card"><div class="icon"><i class="fas fa-phone"></i></div><div><h4>Phone</h4><p>+256 700 123 456</p></div></div>
+                        <div class="contact-detail-card"><div class="icon"><i class="fas fa-envelope"></i></div><div><h4>Email</h4><p>info@tinginaempire.com</p></div></div>
+                        <div class="contact-detail-card"><div class="icon"><i class="far fa-clock"></i></div><div><h4>Business Hours</h4><p>Mon - Sat: 9AM - 9PM</p></div></div>
+                    </div>
+                    <!-- Right Column: Form -->
+                    <div class="contact-form-wrapper">
+                        <h3>Send us a Message</h3>
+                        <form id="contact-form">
+                            <div class="form-row">
+                                <div class="form-group"><label for="contact-name">Full Name *</label><input type="text" id="contact-name" required></div>
+                                <div class="form-group"><label for="contact-email">Email Address *</label><input type="email" id="contact-email" required></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group"><label for="contact-phone">Phone Number</label><input type="tel" id="contact-phone"></div>
+                                <div class="form-group">
+                                    <label for="contact-service">Service Type *</label>
+                                    <select id="contact-service" required>
+                                        <option value="">Select a service...</option>
+                                        <option value="Audio Production">Audio Production</option>
+                                        <option value="Band Booking">Band Booking</option>
+                                        <option value="Talent Management">Talent Management</option>
+                                        <option value="General Inquiry">General Inquiry</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group full-width"><label for="contact-message">Message *</label><textarea id="contact-message" rows="5" required></textarea></div>
+                            <button type="submit" class="form-submit-btn"><i class="fas fa-paper-plane"></i> Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Our Location</h2>
+                <div class="contact-map-container" style="background: transparent; padding: 0; border: none;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63836.11585802871!2d32.55112165136718!3d0.313433600000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbc0f97a3ab15%3A0x4c2b056467a840b4!2sKampala%2C%20Uganda!5e0!3m2!1sen!2sus!4v1701543210987!5m2!1sen!2sus" style="width: 100%; height: 450px; border:0; border-radius: 12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>    
+    
+    <footer class="main-footer">© 2025 TinginaEmpire - One Voice One Stand. All Rights Reserved.</footer>    
+
+    <div id="music-player"><!-- Global Music Player HTML --></div>
+    <div id="auth-modal" class="modal-bg"><!-- Global Auth Modal HTML --></div>
+    <div id="custom-confirm-modal" class="modal-bg">
+        <div class="modal-content">
+            <div class="confirm-icon"><i class="fas fa-question-circle"></i></div>
+            <h3 id="custom-confirm-title">Confirmation</h3>
+            <p id="custom-confirm-message">Are you sure you want to proceed?</p>
+            <div class="confirm-buttons">
+                <button class="btn btn-cancel">Cancel</button>
+                <button class="btn btn-confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+<script src="./live-api.js"></script>
+<script src="./auth.js"></script>
+<script src="./notifications.js"></script>
+<script src="./custom-dialog.js"></script> <!-- ADD THIS LINE -->
+<script src="./player.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // --- Slideshow Logic ---
+    const slides = document.querySelectorAll('.hero-slideshow-section .slide');
+    const prevBtn = document.querySelector('.hero-slideshow-section .arrow-left');
+    const nextBtn = document.querySelector('.hero-slideshow-section .arrow-right');
+    if (slides.length > 0) {
+        let currentSlide = 0;
+        let slideInterval;
+        function showSlide(index) { slides.forEach((s, i) => s.classList.toggle('active', i === index)); currentSlide = index; }
+        function nextSlide() { showSlide((currentSlide + 1) % slides.length); }
+        function prevSlide() { showSlide((currentSlide - 1 + slides.length) % slides.length); }
+        function stopSlideshow() { clearInterval(slideInterval); }
+        function startSlideshow() { stopSlideshow(); slideInterval = setInterval(nextSlide, 5000); }
+        if (nextBtn && prevBtn) {
+            nextBtn.addEventListener('click', () => { nextSlide(); startSlideshow(); });
+            prevBtn.addEventListener('click', () => { prevSlide(); startSlideshow(); });
+        }
+        showSlide(0);
+        startSlideshow();
+    }
+
+    // --- Hamburger Menu Logic ---
+    const hamburger = document.querySelector('.hamburger-menu');
+    const navLinks = document.querySelector('.nav-links');
+    if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+
+    // --- Contact Form Submission Logic ---
+    const form = document.getElementById('contact-form');
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+
+        const formData = {
+            formType: 'Contact Inquiry',
+            name: document.getElementById('contact-name').value,
+            email: document.getElementById('contact-email').value,
+            phone: document.getElementById('contact-phone').value,
+            serviceType: document.getElementById('contact-service').value,
+            message: document.getElementById('contact-message').value,
+        };
+        
+        try {
+            const response = await fetch(`${LiveAPI.API_URL}/api/submit-form`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+            if (!response.ok) throw new Error('Server submission failed');
+            
+            showToast('Message Sent Successfully!', 'fa-check-circle');
+            form.reset();
+
+        } catch (error) {
+            showToast('Error sending message. Please try again.', 'fa-exclamation-triangle');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+        }
+    });
+});
+</script>
+
+</body>
+</html>

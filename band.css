@@ -1,0 +1,396 @@
+/* FILE: band.css */
+
+/* --- 1. Band Member Marquee Section --- */
+.band-marquee-container {
+    width: 100%;
+    overflow: hidden; /* This hides the overflowing content */
+    padding: 2rem 0;
+    position: relative;
+}
+
+/* Add fading edges for a cleaner look */
+.band-marquee-container::before,
+.band-marquee-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+}
+.band-marquee-container::before {
+    left: 0;
+    background: linear-gradient(to right, var(--dark-bg), transparent);
+}
+.band-marquee-container::after {
+    right: 0;
+    background: linear-gradient(to left, var(--dark-bg), transparent);
+}
+
+.band-marquee-track {
+    display: flex;
+    gap: 2rem;
+    width: fit-content; /* Let the track be as wide as its content */
+    animation: marquee 40s linear infinite;
+}
+
+/* Pause the animation when hovering over the container */
+.band-marquee-container:hover .band-marquee-track {
+    animation-play-state: paused;
+}
+
+
+/* --- 2. Expandable Band Member Card --- */
+.band-member-photo-card {
+    flex-shrink: 0; /* Prevents cards from shrinking */
+    width: 250px; /* Initial compact width */
+    height: 350px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: width 0.5s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.band-member-photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.band-member-initial-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: white;
+    text-align: center;
+    transition: opacity 0.5s ease;
+}
+
+.band-member-initial-info h3 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.band-member-full-details {
+    position: absolute;
+    top: 0;
+    left: 250px; /* Initially hidden outside the card's visible area */
+    width: 300px; /* Width of the details panel */
+    height: 100%;
+    padding: 1.5rem;
+    background-color: var(--dark-card);
+    opacity: 0;
+    transition: opacity 0.5s ease 0.2s; /* Delay opacity transition */
+}
+.band-member-full-details h3 { color: var(--gold); }
+.band-member-full-details .role { font-weight: 600; margin: 0.25rem 0 1rem 0; }
+.band-member-full-details .bio { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; }
+.social-links a { color: var(--text-muted); font-size: 1.5rem; margin: 0 0.5rem; transition: color 0.3s; }
+.social-links a:hover { color: var(--gold); }
+
+
+/* --- 3. Hover Effect Logic for Expandable Card --- */
+.band-member-photo-card:hover {
+    width: 550px; /* Expanded width (250px photo + 300px details) */
+    border-color: var(--gold);
+    box-shadow: 0 10px 40px rgba(255, 215, 0, 0.2);
+}
+
+.band-member-photo-card:hover img {
+    transform: scale(1.1);
+}
+
+.band-member-photo-card:hover .band-member-initial-info {
+    opacity: 0;
+}
+.band-member-photo-card:hover .band-member-full-details {
+    opacity: 1;
+}
+
+
+/* --- 4. Marquee Animation Keyframes --- */
+@keyframes marquee {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        /* Move the track by half its width (since we duplicated the content) */
+        transform: translateX(-50%);
+    }
+}
+
+
+/* --- 5. Performance Info Section --- */
+.performance-info-grid {
+    display: flex; /* Change from grid to flex for horizontal layout */
+    flex-direction: row; /* Horizontal cards */
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.info-card {
+    background-color: var(--dark-card);
+    padding: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    flex: 1 1 0; /* Allow cards to grow/shrink equally */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Yellow hover effect for info cards */
+.info-card:hover {
+    transform: translateY(-10px) scale(1.03); /* Slight scale for emphasis */
+    border-color: var(--gold);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3), 0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+.info-card h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.info-card h3 i {
+    color: var(--gold);
+}
+
+.info-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+.info-card ul li {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    line-height: 1.6;
+}
+.info-card ul li::before {
+    content: '●';
+    color: var(--gold);
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+}
+
+.performance-details-item {
+    margin-bottom: 1.5rem;
+}
+.performance-details-item h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+}
+.performance-details-item p {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+
+/* --- 6. Responsive Design for Band Page --- */
+@media (max-width: 992px) {
+    .performance-info-grid {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .band-marquee-container::before,
+    .band-marquee-container::after {
+        width: 50px; /* Reduce the fade effect size on smaller screens */
+    }
+}
+
+/* FILE: band.css */
+/* All unique styles for the band.html page */
+
+/* --- 1. NEW: Redesigned Hero Section --- */
+.band-hero-content {
+    animation: fadeIn 1.5s ease-in-out;
+}
+.band-hero-content h1 {
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+.band-hero-content p {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 1rem auto 2.5rem auto;
+    line-height: 1.7;
+}
+
+/* --- 2. Band Member Marquee Section --- */
+.band-marquee-container { width: 100%; overflow: hidden; padding: 2rem 0; position: relative; }
+.band-marquee-container::before, .band-marquee-container::after { content: ''; position: absolute; top: 0; bottom: 0; width: 100px; z-index: 2; }
+.band-marquee-container::before { left: 0; background: linear-gradient(to right, var(--dark-bg), transparent); }
+.band-marquee-container::after { right: 0; background: linear-gradient(to left, var(--dark-bg), transparent); }
+.band-marquee-track { display: flex; gap: 2rem; width: fit-content; animation: marquee 40s linear infinite; }
+.band-marquee-container:hover .band-marquee-track { animation-play-state: paused; }
+@keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+
+/* --- 3. Expandable Band Member Card --- */
+.band-member-photo-card { flex-shrink: 0; width: 250px; height: 350px; border-radius: 12px; overflow: hidden; position: relative; cursor: pointer; border: 2px solid transparent; transition: width 0.5s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+.band-member-photo-card:hover { width: 550px; border-color: var(--gold); box-shadow: 0 10px 40px rgba(255, 215, 0, 0.2); }
+.band-member-photo-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.band-member-photo-card:hover img { transform: scale(1.1); }
+.band-member-initial-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem 1rem; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); color: white; text-align: center; transition: opacity 0.5s ease; }
+.band-member-initial-info h3 { font-size: 1.5rem; margin: 0; }
+.band-member-photo-card:hover .band-member-initial-info { opacity: 0; }
+.band-member-full-details { position: absolute; top: 0; left: 250px; width: 300px; height: 100%; padding: 1.5rem; background-color: var(--dark-card); opacity: 0; transition: opacity 0.5s ease 0.2s; }
+.band-member-photo-card:hover .band-member-full-details { opacity: 1; }
+.band-member-full-details h3 { color: var(--gold); }
+.band-member-full-details .role { font-weight: 600; margin: 0.25rem 0 1rem 0; }
+.band-member-full-details .bio { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; }
+.social-links a { color: var(--text-muted); font-size: 1.5rem; margin: 0 0.5rem; transition: color 0.3s; }
+.social-links a:hover { color: var(--gold); }
+
+/* --- 4. NEW: Redesigned Booking Modal --- */
+#booking-modal .modal-content {
+    background-color: var(--dark-card);
+    border: 2px solid var(--gold);
+    max-width: 600px; /* Wider modal */
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+}
+#booking-modal h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 2rem;
+}
+#booking-modal .form-group label {
+    color: var(--gold);
+}
+#booking-modal .form-group input {
+    background-color: var(--dark-bg);
+    border-color: rgba(255,255,255,0.2);
+    padding: 1rem;
+    font-size: 1rem;
+}
+#booking-modal .form-submit-btn {
+    padding: 1rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+}
+
+/* --- 5. Responsive Design --- */
+@media (max-width: 768px) {
+    .band-hero-content h1 { font-size: 3rem; }
+    .band-marquee-container::before,
+    .band-marquee-container::after {
+        width: 50px;
+    }
+}
+
+/* UPDATED: Band Videos Section Styles */
+.info-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Adjusted for better card fit */
+}
+
+.video-card-band {
+    background-color: var(--dark-card);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.video-card-band:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.video-thumbnail {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.video-thumbnail::after { /* Dark overlay on thumbnail */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+.video-play-icon {
+    font-size: 3.5rem;
+    color: white;
+    opacity: 0.8;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+.video-card-band:hover .video-play-icon {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.video-card-title {
+    padding: 1.5rem;
+}
+.video-card-title h4 {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin: 0;
+}
+.video-card-title p {
+    font-size: 0.9rem;
+    color: var(--gold);
+    margin-top: 0.25rem;
+    font-weight: 500;
+}
+
+/* NEW: Video Player Modal */
+#video-player-modal .modal-content {
+    background: #000;
+    width: 90%;
+    max-width: 900px;
+    padding: 0;
+    border-radius: 12px;
+    border: none;
+    overflow: hidden;
+}
+#video-player-modal .modal-close-btn {
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    background: rgba(0,0,0,0.5);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.video-player-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+#video-player-container video,
+#video-player-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}

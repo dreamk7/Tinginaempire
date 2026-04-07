@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Band - TinginaEmpire</title>
+    <link rel="stylesheet" href="./TinginaEmpire.css">
+    <link rel="stylesheet" href="./band.css">
+    <link rel="stylesheet" href="./notifications.css">
+    <link rel="stylesheet" href="./custom-dialog.css"> <!-- ADD THIS LINE -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="icon" href="https://img.icons8.com/color/48/000000/musical-notes.png" />
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container navbar">
+            <a href="./index.html" class="nav-logo"><img src="./logo.jpg" alt="TinginaEmpire Logo"><span class="nav-logo-text">TinginaEmpire</span></a>
+            <nav class="nav-links">
+                <a href="./index.html">Home</a>
+                <a href="./music.html">Music</a>
+                <a href="./band.html" class="active">Band</a>
+                <a href="./contact.html">Contact</a>
+            </nav>
+            <div class="hamburger-menu"><i class="fas fa-bars"></i></div>
+            <div id="auth-header-section"></div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-slideshow-section">
+            <div class="slideshow-container">
+                <div class="slide active" style="background-image: url('./Photos/crowd.jpg');"></div>
+                <div class="slide" style="background-image: url('./Photos/band.jpg');"></div>
+                <div class="slide" style="background-image: url('./Photos/guitar.jpg');"></div>
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content band-hero-content">
+                <h1>Meet The TinginaEmpire Band</h1>
+                <p>The architects of the sound, a collective of Uganda's finest musicians delivering <span class="highlight">unforgettable live performances.</span></p>
+                <button id="open-booking-modal" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Check Availability</button>
+            </div>
+            <button class="slideshow-arrow arrow-left"><i class="fas fa-chevron-left"></i></button>
+            <button class="slideshow-arrow arrow-right"><i class="fas fa-chevron-right"></i></button>
+        </section>
+
+        <!-- Band Members Section (Dynamic) -->
+        <section class="section-padding">
+            <div class="container"><h2 class="section-title">Our Members</h2></div>
+            <div class="band-marquee-container">
+                <div id="band-marquee-track" class="band-marquee-track">
+                    <div class="loader-container"><div class="loader"></div></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Band Videos Section (Dynamic) -->
+        <section class="section-padding" style="background-color: var(--dark-card);">
+            <div class="container">
+                <h2 class="section-title">Band Videos</h2>
+                <div id="band-videos-grid" class="info-grid">
+                    <div class="loader-container full-page"><div class="loader"></div></div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <footer class="main-footer">© 2025 TinginaEmpire - One Voice One Stand. All Rights Reserved.</footer>
+    
+    <div id="music-player">
+        <div id="player-song-info"><img id="player-artwork" src="https://via.placeholder.com/60?text=TE" alt="Song Artwork"><div class="details"><p id="player-title" class="title">Select a song</p><p id="player-artist" class="artist">to start playing</p></div></div>
+        <div id="player-controls"><div class="player-buttons"><button id="prev-btn" title="Previous"><i class="fas fa-step-backward"></i></button><button id="play-pause-btn" title="Play/Pause"><i class="fas fa-play"></i></button><button id="next-btn" title="Next"><i class="fas fa-step-forward"></i></button></div><div id="player-progress-container"><span id="current-time">0:00</span><div id="progress-bar-wrapper"><div id="progress-bar"></div></div><span id="duration">0:00</span></div></div>
+        <div id="player-extra-controls"><button id="player-like-btn" class="like-btn" title="Like Song"><i class="far fa-heart"></i></button><div id="player-volume-container"><i id="volume-icon" class="fas fa-volume-up"></i><input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1"></div><a href="#" id="player-download-btn" target="_blank" download title="Download Song"><i class="fas fa-download"></i></a></div>
+        <audio id="audio-source"></audio>
+    </div>
+    
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal-bg">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3><i class="fas fa-calendar-check"></i> Book The Band</h3>
+            <form id="booking-form">
+                <div class="form-group"><label for="booking-name">Your Name</label><input type="text" id="booking-name" required></div>
+                <div class="form-group"><label for="booking-email">Your Email</label><input type="email" id="booking-email" required></div>
+                <div class="form-group"><label for="booking-event-type">Event Type</label><input type="text" id="booking-event-type" placeholder="e.g., Wedding, Corporate Event" required></div>
+                <div class="form-group"><label for="booking-event-date">Event Date</label><input type="date" id="booking-event-date" required></div>
+                <button type="submit" class="form-submit-btn">Submit Booking Request</button>
+                <div class="form-success-msg" style="display: none;">Thank you! We've received your request and will be in touch soon.</div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="auth-modal" class="modal-bg">
+        <div class="modal-content">
+            <button class="modal-close-btn">×</button>
+            <div class="auth-modal-tabs"><button class="auth-modal-tab active" data-form="login">Login</button><button class="auth-modal-tab" data-form="signup">Sign Up</button></div>
+            <div id="login-form-container" class="form-container active"><!-- Login Form --></div>
+            <div id="signup-form-container" class="form-container"><!-- Signup Form --></div>
+        </div>
+    </div>
+    <div id="custom-confirm-modal" class="modal-bg">
+        <div class="modal-content">
+            <div class="confirm-icon"><i class="fas fa-question-circle"></i></div>
+            <h3 id="custom-confirm-title">Confirmation</h3>
+            <p id="custom-confirm-message">Are you sure you want to proceed?</p>
+            <div class="confirm-buttons">
+                <button class="btn btn-cancel">Cancel</button>
+                <button class="btn btn-confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: Video Player Modal -->
+    <div id="video-player-modal" class="modal-bg">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <div id="video-player-container" class="video-player-container">
+                <!-- Video/iFrame will be injected here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+<script src="./live-api.js"></script>
+<script src="./auth.js"></script>
+<script src="./notifications.js"></script>
+<script src="./custom-dialog.js"></script> <!-- ADD THIS LINE -->
+<script src="./player.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // --- Slideshow Logic ---
+    const slides = document.querySelectorAll('.hero-slideshow-section .slide');
+    const prevBtn = document.querySelector('.hero-slideshow-section .arrow-left');
+    const nextBtn = document.querySelector('.hero-slideshow-section .arrow-right');
+    if (slides.length > 0) {
+        let currentSlide = 0;
+        let slideInterval;
+        function showSlide(index){ slides.forEach((s, i) => s.classList.toggle('active', i === index)); currentSlide = index; }
+        function nextSlide(){ showSlide((currentSlide + 1) % slides.length); }
+        function prevSlide(){ showSlide((currentSlide - 1 + slides.length) % slides.length); }
+        function stopSlideshow(){ clearInterval(slideInterval); }
+        function startSlideshow(){ stopSlideshow(); slideInterval = setInterval(nextSlide, 5000); }
+        if (nextBtn && prevBtn) {
+            nextBtn.addEventListener('click', () => { nextSlide(); startSlideshow(); });
+            prevBtn.addEventListener('click', () => { prevSlide(); startSlideshow(); });
+        }
+        showSlide(0);
+        startSlideshow();
+    }
+
+    // --- Hamburger Menu Logic ---
+    const hamburger = document.querySelector('.hamburger-menu');
+    const navLinks = document.querySelector('.nav-links');
+    if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+
+    // --- Booking Modal and Form Logic ---
+    const modal = document.getElementById('booking-modal');
+    const form = document.getElementById('booking-form');
+    const successMsg = modal.querySelector('.form-success-msg');
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    document.getElementById('open-booking-modal').addEventListener('click', () => modal.classList.add('visible'));
+    modal.querySelector('.modal-close-btn').addEventListener('click', () => modal.classList.remove('visible'));
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        
+        const formData = {
+            formType: 'Band Booking',
+            name: document.getElementById('booking-name').value,
+            email: document.getElementById('booking-email').value,
+            eventType: document.getElementById('booking-event-type').value,
+            eventDate: document.getElementById('booking-event-date').value,
+        };
+        
+        try {
+            const response = await fetch(`${LiveAPI.API_URL}/api/submit-form`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+            if (!response.ok) throw new Error('Server submission failed');
+
+            showToast('Booking request sent successfully!');
+            form.reset();
+            modal.classList.remove('visible');
+
+        } catch (error) {
+            showToast('Error sending request. Please try again.', 'fa-exclamation-triangle');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Booking Request';
+        }
+    });
+
+    // --- Dynamic Content Loading ---
+    const track = document.getElementById('band-marquee-track');
+    const videosGrid = document.getElementById('band-videos-grid');
+    const videoPlayerModal = document.getElementById('video-player-modal');
+    const videoPlayerContainer = document.getElementById('video-player-container');
+    let allVideos = [];
+
+    async function loadBandPageData() {
+        try {
+            const [members, videos] = await Promise.all([
+                LiveAPI.getBandMembers(),
+                LiveAPI.getVideos()
+            ]);
+            allVideos = videos;
+
+            if (members.length > 0) {
+                const duplicatedMembers = [...members, ...members];
+                track.innerHTML = duplicatedMembers.map(member => `
+                    <div class="band-member-photo-card">
+                        <img src="${LiveAPI.API_URL}${member.image_url}" alt="${member.name}">
+                        <div class="band-member-initial-info"><h3>${member.name}</h3></div>
+                        <div class="band-member-full-details"><h3>${member.name}</h3><p class="role">${member.role}</p><p class="bio">${member.bio}</p><div class="social-links"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a></div></div>
+                    </div>
+                `).join('');
+            } else {
+                track.innerHTML = '<p style="color: var(--text-muted); text-align: center; width: 100%;">No band members have been added to the system yet.</p>';
+            }
+
+            // --- Render Videos ---
+            const bandVideos = videos.filter(v => v.featured_on_band_page).slice(0, 3);
+            if (bandVideos.length > 0) {
+                videosGrid.innerHTML = bandVideos.map(video => {
+                    const isLocal = !!video.video_url;
+                    let thumbnailUrl = video.youtube_url
+                        ? `https://img.youtube.com/vi/${new URL(video.youtube_url).searchParams.get('v')}/hqdefault.jpg`
+                        : './default-video-thumb.jpg'; // fallback for local videos
+                    return `
+                        <div class="video-card-band" data-video-id="${video.id}">
+                            <div class="video-thumbnail" style="background-image: url('${thumbnailUrl}')">
+                                <div class="video-play-icon"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="video-card-title">
+                                <h4>${video.title}</h4>
+                                <p>${isLocal ? 'Uploaded Performance' : 'Watch on YouTube'}</p>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } else {
+                videosGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: var(--text-muted);">No videos featured for the band yet.</p>';
+            }
+        } catch (error) {
+            console.error("Failed to load band page data:", error);
+            track.innerHTML = '<p style="color: var(--red);">Error loading band members. Ensure the backend is running.</p>';
+            videosGrid.innerHTML = '<p style="color: var(--red);">Error loading videos.</p>';
+        }
+    }
+
+    // --- Video Player Logic ---
+    videosGrid.addEventListener('click', (e) => {
+        const card = e.target.closest('.video-card-band');
+        if (!card) return;
+
+        const videoId = parseInt(card.dataset.videoId, 10);
+        const video = allVideos.find(v => v.id === videoId);
+        if (!video) return;
+
+        videoPlayerModal.classList.add('visible');
+
+        if (video.video_url) {
+            videoPlayerContainer.innerHTML = `
+                <video controls autoplay>
+                    <source src="${LiveAPI.API_URL}${video.video_url}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            `;
+        } else if (video.youtube_url) {
+            const ytId = new URL(video.youtube_url).searchParams.get('v');
+            videoPlayerContainer.innerHTML = `
+                <iframe src="https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0"
+                        title="${video.title}" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            `;
+        }
+    });
+
+    videoPlayerModal.addEventListener('click', (e) => {
+        if (e.target === videoPlayerModal || e.target.classList.contains('modal-close-btn')) {
+            videoPlayerModal.classList.remove('visible');
+            videoPlayerContainer.innerHTML = '';
+        }
+    });
+
+    loadBandPageData();
+});
+</script>
+
+</body>
+</html>
